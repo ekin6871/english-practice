@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bruce 學校｜第一冊｜第1–5課單字</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:760px;margin:auto;padding:20px}
+.card{background:#fff;border-radius:24px;padding:26px;box-shadow:0 6px 24px rgba(0,0,0,.08);text-align:center}
+.back{display:block;text-align:left;margin-bottom:12px;color:#0066cc;text-decoration:none}
+h1{font-size:26px;margin:0 0 6px}.sub{font-size:14px;color:#6e6e73;margin-bottom:12px}.progress{font-size:16px;color:#6e6e73}
+select{font-size:17px;padding:9px 10px;border-radius:10px;max-width:100%;margin-top:10px}
+.word{font-size:46px;font-weight:800;margin:20px 0 8px;word-break:break-word}.zh{font-size:24px;margin-bottom:18px;line-height:1.45}
+button{border:0;border-radius:16px;padding:14px 16px;margin:6px;font-size:18px;font-weight:700;cursor:pointer}.primary{background:#1d1d1f;color:#fff}.secondary{background:#e8e8ed}.good{background:#dff6e7}.result{min-height:58px;margin:16px 0;font-size:20px;line-height:1.45}.note{font-size:14px;color:#6e6e73;line-height:1.5;margin-top:18px}.unit-label{display:inline-block;background:#eef3ff;color:#315b9a;border-radius:999px;padding:5px 10px;font-size:13px;font-weight:700;margin-top:10px}
+@media(max-width:600px){.wrap{padding:14px}.card{padding:20px}.word{font-size:40px}.zh{font-size:22px}button{font-size:17px;padding:13px 14px}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+<a class="back" href="./bruce-school.html">← 回 Bruce 學校</a>
+<h1>🎤 Bruce 學校｜第一冊</h1>
+<div class="sub">第 1–5 課單字練習</div>
+<div class="progress" id="progress"></div>
+<div><select id="categorySelect">
+<option value="all">全部：第 1–5 課</option>
+<option value="lesson1">第 1 課（課本 Unit 2）</option>
+<option value="lesson2">第 2 課（課本 Unit 3）</option>
+<option value="lesson3">第 3 課（課本 Unit 4）</option>
+<option value="lesson4">第 4 課（課本 Unit 5）</option>
+<option value="lesson5">第 5 課（課本 Unit 6）</option>
+</select></div>
+<div class="unit-label" id="unitLabel"></div>
+<div class="word" id="word"></div>
+<div class="zh" id="zh"></div>
+<button class="secondary" id="speakWordBtn">🔊 聽單字</button>
+<button class="secondary" id="slowWordBtn">🐢 慢速單字</button>
+<div>
+<button class="primary" id="recBtn">🎤 我來念</button>
+<button class="secondary" id="repeatBtn">🔁 再聽一次</button>
+</div>
+<div class="result" id="result">按「我來念」後，念出畫面上的英文。</div>
+<div>
+<button class="secondary" id="prevBtn">⬅️ 上一題</button>
+<button class="good" id="nextBtn">下一題 ➡️</button>
+<button class="secondary" id="shuffleBtn">🔀 隨機</button>
+</div>
+<div class="note">本頁依你提供的課本照片整理單字與中文意思。照片沒有提供例句，因此這版不加入課本例句。</div>
+</div></div>
+<script>
+const lesson1 = [
+["house","房子"],["parents","父母親"],["living room","客廳"],["wall","牆壁"],["purple","紫色（的）"],["favorite","最喜愛（的）"],["color","顏色"],["kitchen","廚房"],["dining room","飯廳"],["but","但是"],["gray","灰色（的）"],["brown","棕色（的）"],["cookie","餅乾"],["mice","老鼠（mouse 的複數）"],["maybe","可能"],["sofa","沙發"],
+["hungry","餓的"],["notebook","筆記本"],["marker","記號筆；彩色筆"],["brush","毛筆；筆刷"],["gift","禮物"],["pencil case","鉛筆盒（= pencil box）"],["bathroom","浴室；廁所"],["table","桌子"],["bedroom","臥室"],["near","在……附近"],["between","在……之間"],["behind","在……後面"],["in front of","在……前面"],["special","特別的"],["inside","在……裡面"],["right","就"],["each other","彼此；互相"],["above","在……上方；在上方"],["enough","足夠（的）"],["person","人（複數為 persons 或 people）"]
+];
+const lesson2 = [
+["please","請；拜託"],["wait","等待"],["man","男人（複數為 men）"],["now","現在"],["or","或者"],["time","次；時間"],["wake up","醒來；叫醒……"],["class","課；班級"],["Oh my!","天哪！"],["see","看見"],["quiet","安靜的"],["turn off","關掉"],["sign","標誌"],["talk","說話"],["fight","吵架；打架"],["turn","（依次輪到的）機會"],["follow","遵守；跟隨"],["rule","規則"],["safe","安全的"],["wash","清洗"],["hand","手"],["after class","下課後"],["mummy","木乃伊"],["rock","石塊"],["dinosaur","恐龍"],["lab","實驗室"],
+["guy","人；傢伙"],["magic","神奇的；魔法"],["with","用；和"],["can","可以；會"],["many","許多（的）"],["place","地方"],["use","使用"],["sure","當然；確定的"],["let's...","讓我們一起……"],["careful","小心的"],["museum","博物館"],["Hurry!","快點！"]
+];
+const lesson3 = [
+["music video","音樂影片"],["band","樂團"],["take a look","看一看"],["all","所有的"],["cute","可愛的"],["great","棒的"],["free","有空的"],["weekend","週末"],["Saturday","星期六"],["together","一起"],
+["ready","準備好的"],["p.m.","下午；晚上"],["o'clock","……點鐘"],["day","日；天"],["today","今天"],["Friday","星期五"],["Sunday","星期日"],["Monday","星期一"],["Tuesday","星期二"],["Wednesday","星期三"],["Thursday","星期四"],["week","週；星期"],["a.m.","上午；凌晨"],["study","研讀"],["English","英文"],["take a walk","散步"],["movie","電影"],["take a picture","拍照"],["party","派對；宴會"],["report","報導"],["popular","受歡迎的"],["fan","……迷"],["shake hands","握手"],["everyone","每個人（= everybody）"],["sign","簽名"],["K-pop","韓國流行音樂（= Korean popular music）"],["concert","音樂會；演唱會"],["meet-and-greet","見面會"],["stage","舞台"]
+];
+const lesson4 = [
+["date","日期"],["November","十一月"],["first","第一（的）"],["Thanksgiving","感恩節"],["important","重要的"],["holiday","節日；假日"],["when","何時"],["fourth","第四（的）"],["birthday","生日"],["also","也；此外"],["before","在……之前"],["around","圍繞；在……附近"],["How about...?","那……呢？"],["second","第二（的）"],["next","下一個的"],["month","月份"],["January","一月"],["February","二月"],["March","三月"],["April","四月"],["May","五月"],["June","六月"],["July","七月"],["August","八月"],["September","九月"],["October","十月"],["December","十二月"],
+["New Year's Eve","元旦前夕"],["Christmas","聖誕節"],["third","第三（的）"],["animal","動物"],["cow","牛；乳牛"],["think","想；認為"],["lucky","幸運的"],["only","只是；唯一的"],["dinner","晚餐"],["give","給"],["thankful","感謝的"],["turkey leg","火雞腿"],["nervous","緊張的"],["cry out","喊叫"]
+];
+const lesson5 = [
+["lion","獅子"],["over there","在那裡"],["king","國王"],["some","一些（的）"],["elephant","大象"],["so","如此地"],["any","任何（的）"],["tiger","老虎"],["zebra","斑馬"],["back","背；後面"],["help","幫助；幫忙"],["right","正確的"],["monkey","猴子"],["fox","狐狸"],["horse","馬"],["rat","老鼠"],["bear","熊"],["world","世界"],["example","實例"],["bug","蟲子"],["food","食物"],["clean up","清理；打掃"],["full","飽的；滿的"],["healthy","健康的"],["thanks to","幸虧；由於"],["clean","乾淨的"],
+["never","從不"],["herd","獸群"],["know","知道"],["oxpecker","牛椋鳥"],["expert","專家"],["coat","毛皮"],["luckily","幸運地"],["provide","提供"]
+];
+const lessonMap={lesson1,lesson2,lesson3,lesson4,lesson5};
+const unitNames={lesson1:"第 1 課｜課本 Unit 2",lesson2:"第 2 課｜課本 Unit 3",lesson3:"第 3 課｜課本 Unit 4",lesson4:"第 4 課｜課本 Unit 5",lesson5:"第 5 課｜課本 Unit 6"};
+const allWords=[]; Object.entries(lessonMap).forEach(([k,arr])=>arr.forEach(x=>allWords.push([x[0],x[1],k])));
+let words=allWords.slice(), idx=0, current="all";
+const $=id=>document.getElementById(id);
+function render(){const x=words[idx];$("word").textContent=x[0];$("zh").textContent=x[1];$("progress").textContent=`${idx+1} / ${words.length}`;$("unitLabel").textContent=current==="all"?unitNames[x[2]]:unitNames[current];$("result").textContent="按「我來念」後，念出畫面上的英文。";}
+function speak(text,rate=.82){if(!("speechSynthesis" in window)){ $("result").textContent="這個瀏覽器不支援語音播放。";return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=rate;speechSynthesis.speak(u);}
+function nextWord(){idx=(idx+1)%words.length;render()}function prevWord(){idx=(idx-1+words.length)%words.length;render()}function shuffleWord(){idx=Math.floor(Math.random()*words.length);render()}
+function norm(s){return s.toLowerCase().replace(/[^a-z0-9\s']/g,"").replace(/\s+/g," ").trim()}
+function startRecognition(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$("result").innerHTML="⚠️ 目前這個瀏覽器沒有提供網頁語音辨識。<br>仍可使用「聽單字」。";return}const r=new SR();r.lang="en-US";r.interimResults=false;r.maxAlternatives=5;$("result").textContent="🎧 正在聽，請念出單字……";r.onresult=e=>{const target=norm(words[idx][0]);const alts=[...e.results[0]].map(a=>norm(a.transcript));const heard=e.results[0][0].transcript;const exact=alts.some(a=>a===target);const close=alts.some(a=>a.includes(target)||target.includes(a));if(exact)$("result").innerHTML=`🌟 很棒！辨識到：<b>${heard}</b>`;else if(close)$("result").innerHTML=`👍 很接近！辨識到：<b>${heard}</b><br>再念一次看看。`;else $("result").innerHTML=`🔄 辨識到：<b>${heard}</b><br>目標：<b>${words[idx][0]}</b>`};r.onerror=()=>$("result").textContent="目前無法辨識語音，請再試一次。";try{r.start()}catch(e){$("result").textContent="請稍後再按一次「我來念」。"}}
+function setCategory(v){current=v;words=v==="all"?allWords.slice():lessonMap[v].map(x=>[x[0],x[1],v]);idx=0;render()}
+$("speakWordBtn").addEventListener("click",()=>speak(words[idx][0],.82));$("slowWordBtn").addEventListener("click",()=>speak(words[idx][0],.55));$("repeatBtn").addEventListener("click",()=>speak(words[idx][0],.82));$("recBtn").addEventListener("click",startRecognition);$("prevBtn").addEventListener("click",prevWord);$("nextBtn").addEventListener("click",nextWord);$("shuffleBtn").addEventListener("click",shuffleWord);$("categorySelect").addEventListener("change",e=>setCategory(e.target.value));render();
+</script>
+</body></html>
