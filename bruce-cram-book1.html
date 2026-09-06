@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bruce｜補習班｜第一冊 1-168</title>
+<style>
+body{margin:0;background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:720px;margin:auto;padding:20px}
+.card{background:#fff;border-radius:24px;padding:26px;box-shadow:0 6px 24px rgba(0,0,0,.08);text-align:center}
+h1{font-size:26px;margin:0 0 10px}
+.progress{font-size:16px;color:#6e6e73}
+.word{font-size:48px;font-weight:800;margin:20px 0 8px;word-break:break-word}
+.zh{font-size:24px;margin-bottom:18px}
+.example{font-size:22px;line-height:1.5;margin:20px 0}
+button{border:0;border-radius:16px;padding:14px 16px;margin:6px;font-size:18px;font-weight:700}
+.primary{background:#1d1d1f;color:#fff}
+.secondary{background:#e8e8ed}
+.good{background:#dff6e7}
+.result{min-height:58px;margin:16px 0;font-size:20px;line-height:1.45}
+.note{font-size:14px;color:#6e6e73;line-height:1.5;margin-top:20px}
+select{font-size:17px;padding:8px;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+<div style="text-align:left;margin-bottom:12px;font-size:15px"><a href="index.html" style="color:#0066cc;text-decoration:none">首頁</a> › <a href="bruce.html" style="color:#0066cc;text-decoration:none">Bruce</a> › 補習班第一冊</div><h1>🎤 Bruce 補習班｜第一冊</h1>
+<div class="progress" id="progress"></div>
+<div style="margin-top:10px">
+  <select id="categorySelect">
+<option value="all">全部 Week 單字：1–168</option>
+<optgroup label="Week 分類">
+<option value="week1">Week 1：1–24</option><option value="week2">Week 2：25–48</option>
+<option value="week3">Week 3：49–72</option><option value="week4">Week 4：73–96</option>
+<option value="week5">Week 5：97–120</option><option value="week6">Week 6：121–144</option>
+<option value="week7">Week 7：145–168</option></optgroup>
+<optgroup label="Round 分類"><option value="round5">Round 5：Breaking News（11 個）</option></optgroup>
+</select>
+</div>
+<div class="word" id="word"></div>
+<div class="zh" id="zh"></div>
+<button class="secondary" id="speakWordBtn">🔊 聽單字</button>
+<button class="secondary" id="slowWordBtn">🐢 慢速單字</button>
+<div class="example" id="example"></div>
+<button class="secondary" id="speakExampleBtn">🔊 聽例句</button>
+<button class="secondary" id="slowExampleBtn">🐢 慢速例句</button>
+<div>
+<button class="primary" id="recBtn">🎤 我來念</button>
+<button class="secondary" id="repeatBtn">🔁 再聽一次</button>
+</div>
+<div class="result" id="result">按「我來念」後，念出畫面上的英文。</div>
+<div>
+<button class="secondary" id="prevBtn">⬅️ 上一題</button>
+<button class="good" id="nextBtn">下一題 ➡️</button>
+<button class="secondary" id="shuffleBtn">🔀 隨機</button>
+</div>
+<div class="note">
+Bruce 補習班第一冊：已整合 <b>Week 1–7</b> 與 <b>Round 分類</b>，不用載入 TXT。<br>
+若 iPhone 目前的預覽畫面無法按按鈕，請把 HTML 儲存到「檔案」後，用支援 JavaScript 的瀏覽器開啟。
+</div>
+</div>
+</div>
+<script>
+const allWords = [["actor", "男演員", "He is an actor."], ["beside", "在……旁邊", "The bag is beside the chair."], ["between", "在……之間", "The ball is between the boxes."], ["bicycle (bike)", "腳踏車", "I have a bicycle."], ["birthday", "生日", "Today is my birthday."], ["boat", "船", "There is a boat on the lake."], ["build", "建造；蓋（房子）", "They build a house."], ["building", "建築物", "That is a tall building."], ["cage", "籠子", "The bird is in the cage."], ["cellphone", "手機", "This is my cellphone."], ["come back", "回來", "Please come back soon."], ["computer", "電腦", "There is a computer on the desk."], ["cook", "廚師", "My dad is a cook."], ["cry", "哭泣", "The baby is crying."], ["cute", "可愛的", "The puppy is cute."], ["dark", "黑暗的", "The room is dark."], ["dear", "親愛的；敬愛的", "Dear Mom, I love you."], ["different", "不同的", "These two bags are different."], ["doctor", "醫生", "She is a doctor."], ["doll", "洋娃娃", "The doll is on the bed."], ["dragon", "龍", "The dragon is very big."], ["eighteen", "十八", "She is eighteen years old."], ["eighty", "八十", "My grandpa is eighty."], ["engineer", "工程師", "My uncle is an engineer."], ["enjoy", "享受", "I enjoy the game."], ["everyone (everybody)", "每個人；各位", "Everyone is here."], ["everything", "一切事物", "Everything is ready."], ["factory", "工廠", "My dad works in a factory."], ["famous", "著名的", "He is a famous singer."], ["fault", "過錯", "It is my fault."], ["favorite", "最喜愛的", "Blue is my favorite color."], ["feed", "餵", "I feed the dog every day."], ["fifty", "五十", "There are fifty students."], ["find out", "查明", "Let's find out the answer."], ["flashlight", "手電筒", "I have a flashlight."], ["follow", "遵守；跟隨", "Please follow the rules."], ["food", "食物", "The food is good."], ["forget", "忘記", "Do not forget your book."], ["forty", "四十", "My father is forty."], ["frisbee", "飛盤", "Let's play with the frisbee."], ["gift", "禮物", "This gift is for you."], ["Good afternoon.", "午安。", "Good afternoon, teacher."], ["Good evening.", "晚安；晚上好。", "Good evening, everyone."], ["Good night.", "晚安。", "Good night, Mom."], ["good-bye (bye, goodbye)", "再見", "Good-bye. See you tomorrow."], ["great", "很棒的；優秀的", "You did a great job."], ["hand puppet", "布袋戲偶；手偶", "This is a hand puppet."], ["Have fun!", "盡情玩吧！", "Have fun at the park!"], ["heavy", "重的", "This box is heavy."], ["hold", "握；拿", "Please hold my hand."], ["housewife", "家庭主婦", "She is a housewife."], ["How about...?", "……如何？", "How about this one?"], ["How old...?", "……幾歲？", "How old are you?"], ["I have to go now.", "我得走了。", "I have to go now. Bye!"], ["in back of", "在……後面", "The tree is in back of the house."], ["in front of", "在……前面", "The car is in front of the school."], ["island", "島", "Taiwan is an island."], ["jog", "慢跑", "I jog in the morning."], ["jump", "跳；跳躍", "The boy can jump high."], ["just", "只；僅", "I just have one question."], ["king", "國王", "The king lives in the castle."], ["kite", "風箏", "The kite is in the sky."], ["kung fu", "功夫", "He learns kung fu."], ["lady", "淑女；小姐", "The lady is kind."], ["late", "遲到的", "Do not be late."], ["leaf", "葉子", "There is a leaf on the ground."], ["leave", "留下；離開", "Please leave the book here."], ["Let's go.", "我們走吧。", "Let's go to school."], ["listen", "聽", "Please listen to me."], ["little", "小的；年幼的", "The little boy is cute."], ["look", "看", "Look at the bird."], ["man", "男人", "That man is my teacher."], ["many", "許多的", "There are many books here."], ["master", "大師", "He is a kung fu master."], ["motorcycle", "重型機車", "He rides a motorcycle."], ["mountain", "山", "The mountain is very high."], ["movie theater", "電影院", "We are at the movie theater."], ["Mrs.", "太太", "Mrs. Lee is my teacher."], ["museum", "博物館", "We visit the museum."], ["new", "新的", "I have a new bag."], ["near", "靠近；在……附近", "My school is near my home."], ["nineteen", "十九", "He is nineteen years old."], ["ninety", "九十", "My great-grandpa is ninety."], ["No wonder.", "難怪。", "No wonder you are tired."], ["number", "數字", "What is your lucky number?"], ["o'clock", "……點鐘", "It is seven o'clock."], ["OK", "沒關係的；好的", "OK, I can do it."], ["over here", "在這邊", "Come over here."], ["over there", "在那邊", "The bus is over there."], ["paint", "油漆；繪畫", "I paint a picture."], ["people", "人（複數）", "There are many people here."], ["phone (telephone)", "電話", "The phone is on the table."], ["place", "地方", "This is a nice place."], ["please", "請", "Please sit down."], ["pocket", "口袋", "The key is in my pocket."], ["polar bear", "北極熊", "The polar bear is white."], ["police officer", "警察", "The police officer helps us."], ["popular", "受歡迎的", "This song is popular."], ["prepare", "準備", "I prepare my schoolbag."], ["puppet", "玩偶；傀儡", "The puppet is funny."], ["puppy", "小狗", "The puppy is very cute."], ["quiet", "安靜的", "Please be quiet."], ["reporter", "記者", "She is a reporter."], ["restaurant", "餐館", "We eat at a restaurant."], ["ride", "騎（車、馬）", "I ride my bike to school."], ["robot", "機器人", "The robot can walk."], ["roller skate", "四輪溜冰鞋", "These are my roller skates."], ["roller-skate", "溜冰（四輪溜冰鞋）", "I roller-skate after school."], ["room", "房間", "My room is clean."], ["ropeway", "空中纜車系統", "We take the ropeway up the mountain."], ["rule", "規則", "Please follow the rule."], ["run", "跑", "I run every morning."], ["run over to", "奔向……", "The dog runs over to me."], ["salesman", "銷售員", "The salesman is friendly."], ["schoolbag", "書包", "My schoolbag is blue."], ["scooter", "輕型機車", "She rides a scooter."], ["seat", "座位", "This is my seat."], ["seventeen", "十七", "She is seventeen."], ["seventy", "七十", "My grandma is seventy."], ["shadow puppet", "皮影戲", "We watch a shadow puppet show."], ["shop", "商店", "There is a shop near my home."], ["short", "矮的；短的", "The boy is short."], ["shoulder", "肩膀", "My bag is on my shoulder."], ["shout", "喊叫", "Do not shout in class."], ["show", "表演；秀", "The show is fun."], ["shy", "害羞的", "The girl is shy."], ["singer", "歌手", "She is a good singer."], ["sir", "先生", "Yes, sir."], ["sit down", "坐下", "Please sit down."], ["sixteen", "十六", "He is sixteen years old."], ["sixty", "六十", "My grandpa is sixty."], ["smart", "聰明的", "The student is smart."], ["so", "這麼；如此", "The dog is so cute."], ["son", "兒子", "He is my son."], ["song", "歌曲", "I like this song."], ["song writer", "作詞者；作曲家", "He is a song writer."], ["sorry", "抱歉的", "I am sorry."], ["special", "特別的", "Today is a special day."], ["stand in line", "（站著）排隊", "Please stand in line."], ["stand up", "站起來", "Please stand up."], ["station", "車站", "The station is near here."], ["strong", "強壯的", "My brother is strong."], ["Sun Moon Lake", "日月潭", "Sun Moon Lake is beautiful."], ["super", "極佳的", "The show is super."], ["swim", "游泳", "I can swim."], ["swimmer", "游泳者", "He is a good swimmer."], ["Taipei", "臺北", "Taipei is a big city."], ["Taiwan (the ROC)", "臺灣（中華民國）", "I live in Taiwan."], ["take... with", "把……拿走", "Please take your bag with you."], ["talent", "才藝", "Singing is her talent."], ["talk", "講話", "Please do not talk in class."], ["thank", "感謝", "I thank my teacher."], ["the UK", "英國", "London is in the UK."], ["the USA", "美國", "New York is in the USA."], ["thin", "瘦的；薄的", "This book is thin."], ["thirty", "三十", "My teacher is thirty."], ["town", "城鎮", "This is a small town."], ["toy", "玩具", "The toy is on the floor."], ["train", "訓練", "They train every day."], ["trash", "垃圾", "Please put the trash here."], ["trip", "旅程；行程", "We have a school trip."], ["truck", "卡車", "The truck is big."], ["twenty", "二十", "There are twenty students."], ["twin", "雙胞胎（之一）", "Amy and May are twins."], ["vacation spot", "度假勝地", "This island is a vacation spot."], ["very", "非常地", "She is very happy."], ["visit", "參觀；拜訪", "We visit the museum."], ["voice", "聲音", "She has a beautiful voice."]];
+const round5Words = [["shot", "打針", "Visitors are getting shots."], ["vampire", "吸血鬼", "The story is about a vampire."], ["vaccination", "疫苗接種", "The castle has a vaccination program."], ["vaccine", "疫苗", "The vaccine helps protect people."], ["certificate", "證書；證明書", "He gets a special certificate."], ["bravery", "勇敢", "We thank her for her bravery."], ["free tour", "免費導覽", "They can take a free tour."], ["valley", "山谷", "The castle is in a beautiful valley."], ["mountain", "山脈；山", "There is a mountain near the town."], ["famous", "有名的", "He is a famous writer."], ["modern", "現代的", "This is a modern building."]];
+let words = allWords.slice();
+let idx = 0;
+
+const $ = id => document.getElementById(id);
+function render(){
+  const x=words[idx];
+  $("word").textContent=x[0];
+  $("zh").textContent=x[1];
+  $("example").textContent=x[2];
+  $("progress").textContent=`${idx+1} / ${words.length}`;
+  $("result").textContent="按「我來念」後，念出畫面上的英文。";
+}
+function speak(text, rate=0.82){
+  if(!("speechSynthesis" in window)){ $("result").textContent="這個瀏覽器不支援語音播放。"; return; }
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="en-US";
+  u.rate=rate;
+  speechSynthesis.speak(u);
+}
+function nextWord(){idx=(idx+1)%words.length;render()}
+function prevWord(){idx=(idx-1+words.length)%words.length;render()}
+function shuffleWord(){idx=Math.floor(Math.random()*words.length);render()}
+function norm(s){return s.toLowerCase().replace(/[^a-z0-9\s']/g,"").replace(/\s+/g," ").trim()}
+function startRecognition(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){$("result").innerHTML="⚠️ 目前這個 iPhone 瀏覽器沒有提供網頁語音辨識。<br>仍可使用「聽單字／聽例句」。";return}
+  const r=new SR(); r.lang="en-US"; r.interimResults=false; r.maxAlternatives=5;
+  $("result").textContent="🎧 正在聽，請念出單字……";
+  r.onresult=e=>{
+    const target=norm(words[idx][0].split("(")[0]);
+    const alts=[...e.results[0]].map(a=>norm(a.transcript));
+    const heard=e.results[0][0].transcript;
+    const exact=alts.some(a=>a===target);
+    const close=alts.some(a=>a.includes(target)||target.includes(a));
+    if(exact) $("result").innerHTML=`🌟 很棒！辨識到：<b>${heard}</b>`;
+    else if(close) $("result").innerHTML=`👍 很接近！辨識到：<b>${heard}</b><br>再念一次看看。`;
+    else $("result").innerHTML=`🔄 辨識到：<b>${heard}</b><br>目標：<b>${words[idx][0]}</b>`;
+  };
+  r.onerror=()=>$("result").textContent="目前無法辨識語音，請再試一次。";
+  try{r.start()}catch(e){$("result").textContent="請稍後再按一次「我來念」。"}
+}
+function setCategory(v){
+if(v==="all") words=allWords.slice();
+else if(v.startsWith("week")){const w=parseInt(v.replace("week",""),10);words=allWords.slice((w-1)*24,(w-1)*24+24);}
+else if(v==="round5") words=round5Words.slice();
+idx=0;render();
+}
+
+$("speakWordBtn").addEventListener("click",()=>speak(words[idx][0],0.82));
+$("slowWordBtn").addEventListener("click",()=>speak(words[idx][0],0.55));
+$("speakExampleBtn").addEventListener("click",()=>speak(words[idx][2],0.82));
+$("slowExampleBtn").addEventListener("click",()=>speak(words[idx][2],0.55));
+$("repeatBtn").addEventListener("click",()=>speak(words[idx][0],0.82));
+$("recBtn").addEventListener("click",startRecognition);
+$("prevBtn").addEventListener("click",prevWord);
+$("nextBtn").addEventListener("click",nextWord);
+$("shuffleBtn").addEventListener("click",shuffleWord);
+$("categorySelect").addEventListener("change",e=>setCategory(e.target.value));
+render();
+</script>
+</body>
+</html>
