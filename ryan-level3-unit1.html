@@ -1,0 +1,56 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ryan｜Level 3｜Unit 1</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.wrap{max-width:760px;margin:auto;padding:20px}.card{background:#fff;border-radius:24px;padding:26px;box-shadow:0 6px 24px rgba(0,0,0,.08);text-align:center}.back{display:block;text-align:left;margin-bottom:12px;color:#0066cc;text-decoration:none}h1{font-size:26px;margin:0 0 6px}.sub,.progress{font-size:15px;color:#6e6e73}.word{font-size:46px;font-weight:800;margin:22px 0 8px;word-break:break-word}.zh{font-size:23px;line-height:1.5;margin-bottom:12px}.extra{font-size:16px;line-height:1.65;text-align:left;background:#f5f5f7;border-radius:14px;padding:14px 16px;margin:12px auto 18px;max-width:620px;white-space:pre-line}.extra:empty{display:none}button{border:0;border-radius:16px;padding:14px 16px;margin:6px;font-size:18px;font-weight:700;cursor:pointer}.primary{background:#1d1d1f;color:#fff}.secondary{background:#e8e8ed}.good{background:#dff6e7}.result{min-height:58px;margin:16px 0;font-size:20px;line-height:1.45}.num{display:inline-block;background:#eef3ff;color:#315b9a;border-radius:999px;padding:5px 10px;font-size:13px;font-weight:700;margin-top:10px}.note{font-size:14px;color:#6e6e73;line-height:1.5;margin-top:18px}
+@media(max-width:600px){.wrap{padding:14px}.card{padding:20px}.word{font-size:39px}.zh{font-size:21px}button{font-size:17px;padding:13px 14px}}
+</style></head><body><div class="wrap"><div class="card"><a class="back" href="./ryan-level3.html">← 回 Level 3 級字彙總複習</a><h1>🎤 Ryan｜Level 3｜Unit 1</h1><div class="sub">Unit 1 字彙練習</div><div class="progress" id="progress"></div><div class="num" id="num"></div><div class="word" id="word"></div><div class="zh" id="zh"></div><div class="extra" id="extra"></div><button class="secondary" id="speakWordBtn">🔊 聽單字</button><button class="secondary" id="slowWordBtn">🐢 慢速單字</button><div><button class="primary" id="recBtn">🎤 我來念</button><button class="secondary" id="repeatBtn">🔁 再聽一次</button></div><div class="result" id="result">按「我來念」後，念出畫面上的英文。</div><div><button class="secondary" id="prevBtn">⬅️ 上一題</button><button class="good" id="nextBtn">下一題 ➡️</button><button class="secondary" id="shuffleBtn">🔀 隨機</button></div><div class="note">依你提供的 Ryan Level 3 級字彙總複習 Unit 1 圖片整理。黑色遮蔽處沒有自行補內容。</div></div></div>
+<script>
+const words=[
+[1,"aboard","prep. 在船、飛機或火車上；進入、上船、飛機、火車；adv. 在船、飛機或火車上","片語：welcome aboard＝歡迎加入"],
+[2,"advise","v. 建議；勸告","衍生：advice n. 勸告；建議\nadviser / advisor n. 顧問；指導教授\n用法：advise (sb.) against N./V-ing＝建議（某人）不要做……"],
+[3,"audience","n. 觀眾；聽眾",""],
+[4,"basement","n. 地下室",""],
+[5,"bay","n.（海或湖泊的）灣","補充：the Bay Area＝舊金山灣區\n片語：keep/hold ... at bay＝讓（危險或令人不快的事物）無法接近或發生"],
+[6,"beast","n. 野獸",""],
+[7,"canyon","n. 峽谷","補充：Grand Canyon＝美國大峽谷"],
+[8,"carpenter","n. 木匠",""],
+[9,"chill","v.（使）變冷；放鬆；n. 寒氣；寒冷","衍生：chilly adj. 寒冷的；有寒意的"],
+[10,"chin","n. 下巴","補充：double chin＝雙下巴\n片語：keep your chin up＝打起精神；不要氣餒"],
+[11,"cleaner","n. 清潔工；清潔劑","衍生：clean adj. 乾淨的；v. 清理；adv. 乾淨地；n. 掃除"],
+[12,"crispy","adj. 脆的；酥脆的；（聲音）清脆的","補充：亦可拼作 crisp"],
+[13,"cruel","adj. 殘酷的；殘忍的","衍生：cruelty n. 殘酷、殘忍"],
+[14,"database","n. 資料庫",""],
+[15,"dawn","n. 黎明；破曉；v. 破曉；（時代、局面等）開始出現","補充：dusk n. 黃昏；薄暮"],
+[16,"deck","n. 甲板；一副（紙牌）","補充：a deck of cards＝一副紙牌"],
+[17,"elderly","adj. 年長的；年老的",""],
+[18,"explore","v. 探索；探究；探討","衍生：exploration n. 探索；勘查"],
+[19,"fortune","n. 運氣；命運（不可數）；財富、大筆錢（可數，常作單數）","反：misfortune n. 不幸；厄運\n衍生：fortunate adj. 幸運的"],
+[20,"glory","n. 榮耀；壯麗燦爛","衍生：glorious adj. 燦爛的；輝煌的"],
+[21,"hire","v. 聘請；僱用；n.（人的）僱用","衍生：hirer n. 雇主"],
+[22,"horn","n.（牛、羊等動物的）角；喇叭","片語：take the bull by the horns＝果斷行動；勇於解決問題"],
+[23,"opposite","n. 相反；相反的人事物；adj. 對面的；相反的；prep. 在……對面；adv. 在對面","補充：opposites attract＝異性相吸\nopposite sex＝異性"],
+[24,"organize","v. 安排；整理","衍生：organization n. 機構；團體\norganizer n. 組織者；策劃者"],
+[25,"original","adj. 最初的；原來的；n. 原著；真跡","衍生：originality n. 創造力；原創性"],
+[26,"oven","n. 烤箱；烤爐","補充：oven mitt＝烤箱用的隔熱手套"],
+[27,"owl","n. 貓頭鷹","補充：night owl＝夜貓子"],
+[28,"pearl","n. 珍珠","補充：Pearl Harbor＝珍珠港"],
+[29,"persuade","v. 說服","衍生：persuasion n. 說服、勸說\npersuasive adj. 打動人心的；有說服力的"],
+[30,"pill","n. 藥丸","補充：sleeping pill＝安眠藥；diet pill＝減肥藥"],
+[31,"ribbon","n. 緞帶；絲帶",""],
+[32,"sauce","n. 調味汁；醬汁","補充：soy sauce＝醬油"],
+[33,"saucer","n. 茶托；淺碟；（放花盆的）墊盤",""],
+[34,"shepherd","n. 牧羊人","補充：sheepdog n. 牧羊犬"],
+[35,"sink","n. 水槽；洗臉盆；v. 使下沉；使沉沒","三態：sink–sank–sunk\n片語：sink one's teeth into (sth.)＝熱烈地沉浸於某事中"],
+[36,"skip","v. 省略；跳過；曠（課）；n. 跳躍；躍過的動作","三態：skip–skipped–skipped"],
+[37,"suicide","n. 自殺","補充：die by suicide＝自殺"],
+[38,"survey","n. 調查；問卷調查；v. 調查；勘測","補充：conduct a survey＝進行調查"],
+[39,"suspect","v. 懷疑；猜測；n. 嫌疑犯；adj. 有疑慮的；可疑的","衍生：suspicion n. 懷疑；疑心\nsuspicious adj. 猜疑的；多疑的"],
+[40,"swan","n. 天鵝","片語：swan song＝最後的精彩之作"],
+[41,"tangerine","n. 柑橘；橘子",""]
+];
+let idx=0;const $=id=>document.getElementById(id);
+function render(){const x=words[idx];$("progress").textContent=`${idx+1} / ${words.length}`;$("num").textContent=`No. ${x[0]}`;$("word").textContent=x[1];$("zh").textContent=x[2];$("extra").textContent=x[3]||"";$("result").textContent="按「我來念」後，念出畫面上的英文。"}
+function speak(text,rate=.82){if(!("speechSynthesis" in window)){ $("result").textContent="這個瀏覽器不支援語音播放。";return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=rate;speechSynthesis.speak(u)}
+function norm(s){return s.toLowerCase().replace(/[^a-z0-9\s']/g,"").replace(/\s+/g," ").trim()}
+function startRecognition(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$("result").innerHTML="⚠️ 目前這個瀏覽器沒有提供網頁語音辨識。<br>仍可使用「聽單字」。";return}const r=new SR();r.lang="en-US";r.interimResults=false;r.maxAlternatives=5;$("result").textContent="🎧 正在聽，請念出單字……";r.onresult=e=>{const target=norm(words[idx][1]);const alts=[...e.results[0]].map(a=>norm(a.transcript));const heard=e.results[0][0].transcript;const exact=alts.some(a=>a===target);const close=alts.some(a=>a.includes(target)||target.includes(a));if(exact)$("result").innerHTML=`🌟 很棒！辨識到：<b>${heard}</b>`;else if(close)$("result").innerHTML=`👍 很接近！辨識到：<b>${heard}</b><br>再念一次看看。`;else $("result").innerHTML=`🔄 辨識到：<b>${heard}</b><br>目標：<b>${words[idx][1]}</b>`};r.onerror=()=>$("result").textContent="目前無法辨識語音，請再試一次。";try{r.start()}catch(e){$("result").textContent="請稍後再按一次「我來念」。"}}
+$("speakWordBtn").onclick=()=>speak(words[idx][1],.82);$("slowWordBtn").onclick=()=>speak(words[idx][1],.55);$("repeatBtn").onclick=()=>speak(words[idx][1],.82);$("recBtn").onclick=startRecognition;$("prevBtn").onclick=()=>{idx=(idx-1+words.length)%words.length;render()};$("nextBtn").onclick=()=>{idx=(idx+1)%words.length;render()};$("shuffleBtn").onclick=()=>{idx=Math.floor(Math.random()*words.length);render()};render();
+</script></body></html>

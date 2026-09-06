@@ -1,17 +1,17 @@
-# English Study – Bruce & Ryan
+# English Study - GitHub Pages
 
-GitHub Pages ready static site.
+首頁：`index.html`
 
-## Recommended GitHub Pages setup
-1. Upload all files in this folder to the repository root.
-2. GitHub repository → Settings → Pages.
-3. Source: Deploy from a branch.
-4. Branch: `main`, Folder: `/(root)`.
-5. Open the Pages URL shown by GitHub.
+目前架構：
+- Bruce
+  - 補習班
+    - 第一冊：原本 1–168 + Round 5
+  - 學校
+    - 第一冊：Unit 1–6
+- Ryan
+  - 補習班
+  - Level 3 級字彙總複習
+    - Unit 1：1–41
+  - 學校
 
-Important: keep all HTML files at the same level as `index.html`.
-
-## 2026-09 update
-- Bruce > School > Book 1 added.
-- Book 1 contains five supplied lesson groups, corresponding to textbook Unit 2 through Unit 6.
-- `bruce-school-book1.html` is linked from `bruce-school.html`.
+GitHub Pages 建議：Settings → Pages → Deploy from a branch → main → /(root)
