@@ -27,3 +27,6 @@ GitHub Pages 建議：Settings → Pages → Deploy from a branch → main → /
 
 
 更新：v10 改善 iPhone/iPad（包含 iOS Chrome）語音播放與慢速發音相容性，套用到 Bruce 補習班、Bruce 學校與 Ryan Level 3。
+
+
+更新：Bruce 學校第一冊與 Ryan Level 3 Unit 1–5 補上簡單英文例句，並加入一般／慢速例句發音。Bruce 補習班原有例句保留。
