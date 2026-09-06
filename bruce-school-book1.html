@@ -74,7 +74,41 @@ const allWords=[]; Object.entries(unitMap).forEach(([k,arr])=>arr.forEach(x=>all
 let words=allWords.slice(), idx=0, current="all";
 const $=id=>document.getElementById(id);
 function render(){const x=words[idx];$("word").textContent=x[0];$("zh").textContent=x[1];$("progress").textContent=`${idx+1} / ${words.length}`;$("unitLabel").textContent=current==="all"?unitNames[x[2]]:unitNames[current];$("result").textContent="按「我來念」後，念出畫面上的英文。";}
-function speak(text,rate=.82){if(!("speechSynthesis" in window)){ $("result").textContent="這個瀏覽器不支援語音播放。";return;}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=rate;speechSynthesis.speak(u);}
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+let englishVoice = null;
+function refreshEnglishVoice(){
+  if(!("speechSynthesis" in window)) return;
+  const voices = speechSynthesis.getVoices();
+  englishVoice = voices.find(v => /^en-US$/i.test(v.lang) && /Samantha|Ava|Allison|Susan|Tom/i.test(v.name))
+              || voices.find(v => /^en-US$/i.test(v.lang))
+              || voices.find(v => /^en/i.test(v.lang))
+              || null;
+}
+if("speechSynthesis" in window){
+  refreshEnglishVoice();
+  if(speechSynthesis.addEventListener) speechSynthesis.addEventListener("voiceschanged", refreshEnglishVoice);
+}
+function speak(text, rate=0.82){
+  if(!("speechSynthesis" in window)){
+    $("result").textContent="這個瀏覽器不支援語音播放。";
+    return;
+  }
+  const requestedRate = rate;
+  const play = () => {
+    refreshEnglishVoice();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US";
+    if(englishVoice) u.voice = englishVoice;
+    u.rate = isIOS ? (requestedRate <= 0.6 ? 0.65 : 0.88) : requestedRate;
+    u.pitch = 1.0;
+    u.volume = 1.0;
+    u.onerror = () => { $("result").textContent="語音播放失敗，請再按一次。"; };
+    speechSynthesis.speak(u);
+    if(speechSynthesis.paused) speechSynthesis.resume();
+  };
+  speechSynthesis.cancel();
+  setTimeout(play, isIOS ? 160 : 30);
+}
 function nextWord(){idx=(idx+1)%words.length;render()}function prevWord(){idx=(idx-1+words.length)%words.length;render()}function shuffleWord(){idx=Math.floor(Math.random()*words.length);render()}
 function norm(s){return s.toLowerCase().replace(/[^a-z0-9\s']/g,"").replace(/\s+/g," ").trim()}
 function startRecognition(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$("result").innerHTML="⚠️ 目前這個瀏覽器沒有提供網頁語音辨識。<br>仍可使用「聽單字」。";return}const r=new SR();r.lang="en-US";r.interimResults=false;r.maxAlternatives=5;$("result").textContent="🎧 正在聽，請念出單字……";r.onresult=e=>{const target=norm(words[idx][0]);const alts=[...e.results[0]].map(a=>norm(a.transcript));const heard=e.results[0][0].transcript;const exact=alts.some(a=>a===target);const close=alts.some(a=>a.includes(target)||target.includes(a));if(exact)$("result").innerHTML=`🌟 很棒！辨識到：<b>${heard}</b>`;else if(close)$("result").innerHTML=`👍 很接近！辨識到：<b>${heard}</b><br>再念一次看看。`;else $("result").innerHTML=`🔄 辨識到：<b>${heard}</b><br>目標：<b>${words[idx][0]}</b>`};r.onerror=()=>$("result").textContent="目前無法辨識語音，請再試一次。";try{r.start()}catch(e){$("result").textContent="請稍後再按一次「我來念」。"}}

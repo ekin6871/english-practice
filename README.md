@@ -24,3 +24,6 @@ GitHub Pages 建議：Settings → Pages → Deploy from a branch → main → /
 
 
 更新：Ryan 的 Level 3 級字彙總複習已加入 Unit 5，並與 Unit 1、Unit 2、Unit 3、Unit 4 合併於同一個 HTML。
+
+
+更新：v10 改善 iPhone/iPad（包含 iOS Chrome）語音播放與慢速發音相容性，套用到 Bruce 補習班、Bruce 學校與 Ryan Level 3。
